@@ -49,6 +49,7 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.success("Existing email and password");
     }
   };
   return (

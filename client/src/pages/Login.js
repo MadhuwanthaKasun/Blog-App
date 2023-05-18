@@ -45,7 +45,7 @@ const Login = () => {
         email: inputs.email,
         password: inputs.password,
       });
-      window.alert(data.user);
+      toast.error("User login Failed");
       if (data.success) {
         localStorage.setItem("userId", data?.user._id);
         localStorage.setItem("Token", data?.accessToken);

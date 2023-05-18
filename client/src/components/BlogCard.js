@@ -31,56 +31,73 @@ export default function BlogCard({
     try {
       const { data } = await axios.delete(`http://localhost:8800/api/blog/delete-blog/${id}`);
       if (data?.success) {
-        alert("Blog Deleted");
+        toast.success("Blog deleted")
         window.location.reload();
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <Card
       sx={{
-        width: "40%",
+        display: "flex",
+        width: "100%",
         margin: "auto",
         mt: 2,
         padding: 2,
         boxShadow: "5px 5px 10px #ccc",
-        ":hover:": {
+        transition: "box-shadow 0.3s ease-in-out",
+        "&:hover": {
           boxShadow: "10px 10px 20px #ccc",
+        },
+        "@media (min-width: 600px)": {
+          width: "70%",
+        },
+        "@media (min-width: 960px)": {
+          width: "50%",
+        },
+        "@media (min-width: 1280px)": {
+          width: "40%",
         },
       }}
     >
-      {isUser && (
-        <Box display={"flex"}>
-          <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-            <ModeEditIcon color="info" />
-          </IconButton>
-          <IconButton onClick={handleDelete}>
-            <DeleteIcon color="error" />
-          </IconButton>
-        </Box>
-      )}
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: "grey" }} aria-label="recipe">
-            {username}
-          </Avatar>
-        }
-        title={username}
-        subheader={time}
+      <CardMedia
+        component="img"
+        sx={{ height: 200, width: 200, objectFit: "cover" }}
+        image={image}
+        alt="Blog Image"
       />
-      <CardMedia component="img" height="194" image={image} alt="Paella dish" />
-      <CardContent>
-        <Typography variant="h6" color="text.secondary">
-          {title}
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {description}
-        </Typography>
-      </CardContent>
+      <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        {isUser && (
+          <Box display="flex" justifyContent="flex-end">
+            <IconButton onClick={handleEdit}>
+              <ModeEditIcon color="info" />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteIcon color="error" />
+            </IconButton>
+          </Box>
+        )}
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "grey" }} aria-label="recipe">
+              {username}
+            </Avatar>
+          }
+          title={username}
+          subheader={time}
+        />
+        <CardContent>
+          <Typography variant="h6" color="text.secondary">
+            {title}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
+            {description}
+          </Typography>
+        </CardContent>
+      </Box>
     </Card>
-    
-    
   );
 }

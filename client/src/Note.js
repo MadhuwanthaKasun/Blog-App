@@ -1,57 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const defaultTheme = createTheme();
-
-const CreateBlog = () => {
-  const id = localStorage.getItem("userId");
-  const navigate = useNavigate();
-  const [inputs, setInputs] = useState({
-    title: "",
-    description: "",
-    image: "",
-  });
-  // input change
-  const handleChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  //form
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post("http://localhost:8800/api/blog/create-blog", {
-        title: inputs.title,
-        description: inputs.description,
-        image: inputs.image,
-        user: id,
-      });
-      if (data?.success) {
-        toast.success("Blog Created");
-        navigate("/my-blogs");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-      <ThemeProvider theme={defaultTheme}>
+<ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -84,12 +31,9 @@ const CreateBlog = () => {
               type={"text"}
             />
             <TextField
-              multiline
-              fullWidth
-              rows={4}
               margin="normal"
               required
-              sx={{ width: '800px' }}
+              fullWidth
               id="description"
               label="description"
               autoComplete="description"
@@ -121,16 +65,9 @@ const CreateBlog = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
             >
-              Create
+              Register
             </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
-        
-      </form>
-    </>
-  );
-};
-
-export default CreateBlog;

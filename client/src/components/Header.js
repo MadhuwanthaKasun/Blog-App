@@ -29,7 +29,6 @@ const Header = () => {
       toast.success("Logout Successfully");
       navigate("/login");
       localStorage.clear();
-      cookies.clear();
     } catch (error) {
       console.log(error);
     }

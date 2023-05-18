@@ -60,7 +60,7 @@ const BlogDetails = () => {
       <form onSubmit={handleSubmit}>
         <Box
           width={"50%"}
-          border={3}
+          border={1}
           borderRadius={10}
           padding={3}
           margin="auto"
@@ -70,13 +70,13 @@ const BlogDetails = () => {
           marginTop="30px"
         >
           <Typography
-            variant="h2"
+            variant="h3"
             textAlign={"center"}
             fontWeight="bold"
             padding={3}
             color="gray"
           >
-            Update A Pots
+            Update Pots
           </Typography>
           <InputLabel
             sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
@@ -98,6 +98,8 @@ const BlogDetails = () => {
           </InputLabel>
           <TextField
             name="description"
+            multiline
+            rows={4}
             value={inputs.description}
             onChange={handleChange}
             margin="normal"
