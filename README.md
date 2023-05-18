@@ -19,4 +19,16 @@ To set up this blog locally, follow these steps:
 4. run npm install from the client folder.
 5. run nodemon server.js command to start the local server, and npm start from client folder to start client server.
 
+## License
 
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+This blog project was inspired by the open-source community and the many developers who share their knowledge and expertise online. Thank you for your contributions and support!
+
+## Contact
+
+If you have any questions or need further assistance, you can reach out to me at [kasunprabhathmax@gmail.com](mailto:kasunprabhathmax@gmail.com).
+
+Happy blogging!
