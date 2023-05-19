@@ -4,10 +4,12 @@
   "description": "blog app",
   "main": "server.js",
   "scripts": {
-    "start": "node serevr.js",
+    "start": "nodem serevr.js",
     "server": "nodemon server.js",
+    "build": "npm",
     "client": "npm start --prefix ./client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "techinfoyt",
   "license": "ISC",
